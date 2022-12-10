@@ -5,10 +5,10 @@
 -- This module is intended to be imported qualified, to avoid name clashes with Prelude functions:
 --
 -- @
--- import qualified Data.SkewList.Strict as Skew
+-- import qualified Data.SkewList.Lazy as Skew
 -- @
 --
-module Data.SkewList.Strict (
+module Data.SkewList.Lazy (
     SkewList (Cons, Nil),
     -- * Construction
     empty,
@@ -44,5 +44,5 @@ module Data.SkewList.Strict (
     explicitShowsPrec,
 ) where
 
-import Data.SkewList.Strict.Internal
+import Data.SkewList.Lazy.Internal
 import Prelude ()
