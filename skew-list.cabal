@@ -13,13 +13,15 @@ description:
   +------------------------------+------------+----------+
   |                              | Consing    | Indexing |
   +------------------------------+------------+----------+
-  | Ordinary list, @[a]@         | /O(1)/     | O(n)     |
+  | Ordinary list, @[a]@         | O(1)       | O(n)     |
   +------------------------------+------------+----------+
-  | Binary list, @RAList a@      | /O(log n)/ | O(log n) |
+  | Binary list, @RAList a@      | O(log n)   | O(log n) |
   +------------------------------+------------+----------+
-  | Vector, @Vector@             | /O(n)/     | O(1)     |
+  | Vector, @Vector@             | O(n)       | O(1)     |
   +------------------------------+------------+----------+
-  | Skew binary list, @SkewList@ | /O(1)/     | O(log n) |
+  | Sequence, @Seq@              | O(1)       | O(log n) |
+  +------------------------------+------------+----------+
+  | Skew binary list, @SkewList@ | O(1)       | O(log n) |
   +------------------------------+------------+----------+
   .
   @SkewList@ improves upon ordinary list, the cons operation is still
@@ -31,6 +33,10 @@ description:
   .
   @Vector@ is the other end of trade-off spectrum: indexing is constant time
   operation, but consing a new element will need to copy whole spine.
+  .
+  @Seq@ from "Data.Sequence" has similar complexity bounds for cons and index
+  as @SkewList@. However (it seems) that indexing is quicker for @SkewList@ in
+  practice. On the other hand, @Seq@ has quick append if you need that.
   .
   If you need both: fast consing and index, consider using @SkewList@.
 
@@ -73,9 +79,9 @@ library
   -- other dependencies
   build-depends:
     , hashable             ^>=1.4.1.0
-    , strict ^>=0.4.0.1
     , indexed-traversable  ^>=0.1.1
     , QuickCheck           ^>=2.14.2
+    , strict               ^>=0.4.0.1
 
   if impl(ghc >=9.0)
     -- these flags may abort compilation with GHC-8.10
@@ -95,11 +101,11 @@ test-suite skew-list-tests
   build-depends:
     , base
     , indexed-traversable
-    , QuickCheck
+    , QuickCheck           ^>=2.14.2
     , skew-list
-    , tasty
-    , tasty-hunit
-    , tasty-quickcheck
+    , tasty                ^>=1.4.2.3
+    , tasty-hunit          ^>=0.10.0.3
+    , tasty-quickcheck     ^>=0.10.2
 
 benchmark skew-list-bench
   type:             exitcode-stdio-1.0
@@ -109,7 +115,8 @@ benchmark skew-list-bench
   ghc-options:      -Wall
   build-depends:
     , base
-    , criterion
-    , ral
+    , containers
+    , criterion   ^>=1.6.0.0
+    , ral         ^>=0.2.1
     , skew-list
-    , vector
+    , vector      ^>=0.13.0.0
