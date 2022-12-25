@@ -40,8 +40,8 @@ description:
   .
   If you need both: fast consing and index, consider using @SkewList@.
 
-homepage:           https://github.com/phadej/vec
-bug-reports:        https://github.com/phadej/vec/issues
+homepage:           https://github.com/phadej/skew-list
+bug-reports:        https://github.com/phadej/skew-list/issues
 license:            BSD-3-Clause
 license-file:       LICENSE
 author:             Oleg Grenrus <oleg.grenrus@iki.fi>
