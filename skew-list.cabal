@@ -34,9 +34,10 @@ description:
   @Vector@ is the other end of trade-off spectrum: indexing is constant time
   operation, but consing a new element will need to copy whole spine.
   .
-  @Seq@ from "Data.Sequence" has similar complexity bounds for cons and index
-  as @SkewList@. However (it seems) that indexing is quicker for @SkewList@ in
-  practice. On the other hand, @Seq@ has quick append if you need that.
+  @Seq@ from "Data.Sequence" has similar (but amortized) complexity bounds for
+  cons and index as @SkewList@.  However (it seems) that indexing is quicker for
+  @SkewList@ in practice. Also @SkewList@ has strict spine.
+  On the other hand, @Seq@ has quick append if you need that.
   .
   If you need both: fast consing and index, consider using @SkewList@.
 
@@ -50,7 +51,7 @@ copyright:          (c) 2022 Oleg Grenrus
 build-type:         Simple
 extra-source-files: ChangeLog.md
 tested-with:
-  GHC ==8.6.5 || ==8.8.4 || ==8.10.7 || ==9.0.2 || ==9.2.5 || ==9.4.3
+  GHC ==8.6.5 || ==8.8.4 || ==8.10.7 || ==9.0.2 || ==9.2.5 || ==9.4.4
 
 source-repository head
   type:     git
