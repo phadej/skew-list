@@ -346,9 +346,7 @@ infixl 9 !, !?
 --
 -- >>> fromList ['a'..'f'] ! 6
 -- *** Exception: SkewList.!
--- CallStack (from HasCallStack):
---   error...
---   !, called at <interactive>...
+-- ...
 --
 (!) :: HasCallStack => SkewList a -> Int -> a
 (!) t i
